@@ -19,7 +19,7 @@ A_damped =   [zeros([5,5]),eye(5); -M_inv*K,-M_inv*C];
 f_damped = @(t,x) [A_damped *x]; % define function f(t,y)
 f_undamped = @(t,x) [A_undamped *x]; % define function f(t,y)
 
-x_0 = [0,0,0,0,pi/2,0,0,0,0,0]';
+x_0 = [0,0,0,m_3*g/k_5,pi/2,0,0,0,0,0]';
 t0=0;
 T=5;
 [ts_damped,ys_damped] = ode45(f_damped,[t0,T],x_0);
@@ -103,7 +103,7 @@ for j=1:floor(length(ys_undamped))/100
     
     plot(X_4,Y_l,Color="b")
     domain = [-5,15,-10,10];
-    title('system at time = ',ts_undamped(i))
+    title('system at time = ',ts_undamped(i ))
     axis(domain)
     axis equal
     F_undamped(j) = getframe;
@@ -114,4 +114,5 @@ end
 toc
 
 %%
-movie(F_damped)
+movie(F_undamped)
+
